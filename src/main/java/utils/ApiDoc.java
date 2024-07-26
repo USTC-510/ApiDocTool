@@ -92,7 +92,7 @@ public class ApiDoc
     public void createDoc() throws Exception
     {
         try (PrintWriter writer = new PrintWriter(new FileWriter(file,true))){
-            writer.println("## "+description);
+            writer.println("[API]  "+"## "+description);
             writer.println("### 请求URL");
             writer.println(method + ":  "+"`"+ url + "`");
             writer.println("### 请求参数");
