@@ -43,7 +43,7 @@
   ```
   public class Test
 {
-    //下面定义了一个接口
+    //下面定义了一个接口（接口格式并不正确，省略了@RequestMapping等等，仅作为一个示例）
     @Api("选课系统登录")
     @Url(method = "POST", url = "http://localhost:8080/api/login")
     @Request(name = {"username","password"}, type = {"string","string"})
