@@ -21,7 +21,7 @@ import java.util.Set;
  * @Version:   1.0
  */
 @SuppressWarnings("all")
-public class ApiDocFactory
+public static class ApiDocFactory
 {
     public static void createDocPerMethod(Method meth) throws Exception
     {
