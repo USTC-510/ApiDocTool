@@ -35,7 +35,7 @@
   
   ` ApiDocFactory.createDoc(classes); `  
   
-  其中，...表示项目中所有添加了注解的方法所属类的.class文件。例如，如果Test类中有方法上写了注解，那么...处应填写 Test.class。  
+  其中，...表示项目中所有添加了注解的方法所属类的.class文件。例如，如果Test类中有方法(api)上写了注解，那么...处应填写 Test.class(也就是在类名后面加上.class)。  
   运行后，你的项目根目录下会自动创建一个APIDOC.md文件，即为Api文档。
 
   示例代码：
@@ -43,7 +43,7 @@
   ```
   public class Test
 {
-    //下面定义了一个接口（接口格式并不正确，省略了@RequestMapping等等，仅作为一个示例）
+    //下面定义了一个api（api格式并不正确，省略了@RequestMapping等等，仅作为一个示例）
     @Api("选课系统登录")
     @Url(method = "POST", url = "http://localhost:8080/api/login")
     @Request(name = {"username","password"}, type = {"string","string"})
@@ -58,7 +58,7 @@
         return res;
     }
   
-    //下面是main方法，当然实际项目中一般不会与接口写在同一个类中
+    //下面是main方法，当然实际项目中一般不会与api写在同一个类中
     public static void main() throws Exception
     {
         Class[] classes = new Class[]{Test.class};
