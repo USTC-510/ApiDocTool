@@ -4,7 +4,13 @@ import annotations.Api;
 import annotations.Request;
 import annotations.Response;
 import annotations.Url;
+
+import java.io.IOException;
 import java.lang.reflect.Method;
+import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -67,7 +73,7 @@ public class ApiDocFactory
             flag = true;
         }
 
-        if (flag) {apiDoc.createDoc();}
+        if (!exists(apiDoc) && flag) {apiDoc.createDoc();}
     }
 
     public static void createDoc(ArrayList<Class> classes) throws Exception
@@ -116,5 +122,23 @@ public class ApiDocFactory
                 createDocPerMethod(method);
             }
         }
+    }
+
+    public static boolean exists(ApiDoc apiDoc) throws IOException
+    {
+        String filePath = "APIDOC.md";
+        String searchText = apiDoc.getUrl();
+
+        Path path = Paths.get(filePath);
+
+        if (!Files.exists(path)) {Files.createFile(path);}
+        try {
+            return Files.lines(path)
+                    .anyMatch(line -> line.contains(searchText));
+        } catch (IOException e) {
+            throw new RuntimeException("Error reading file: " + filePath, e);
+        }
+
+
     }
 }
