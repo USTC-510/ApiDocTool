@@ -15,14 +15,19 @@ public class Test
     @Request(name = {"username","password"}, type = {"string","string"})
     @Response(name = {"name","code"}, type = {"string","int"})
     @Remark("这个api实现了学生，老师和管理员的登录")
-    public ArrayList<Object> api(String username, String password)
+    public void api1(String username, String password)
     {
-        String name = "zkr";
-        int code = 200;
-        ArrayList<Object> res = new ArrayList<Object>();
-        res.add(name);
-        res.add(code);
-        return res;
+        //这是第一个api
+    }
+
+    @Api("修改密码")
+    @Url(method = "GET", url = "http://localhost:8080/api/changePassword")
+    @Request
+    @Response(name = {"code"}, type = {"bool"})
+    @Remark("这个api实现了密码的修改")
+    public void api2()
+    {
+        //这是第二个api
     }
 
     public static void main() throws Exception

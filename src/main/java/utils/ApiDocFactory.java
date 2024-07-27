@@ -4,6 +4,7 @@ import annotations.*;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -19,7 +20,7 @@ import java.util.Set;
 @SuppressWarnings("all")
 public class ApiDocFactory
 {
-    public static void createDocPerMethod(Method meth) throws Exception
+    public static String createDocPerMethod(Method meth) throws Exception
     {
         Class<?> cla = ApiDoc.class;
         ApiDoc apiDoc = (ApiDoc)cla.newInstance();
@@ -77,26 +78,9 @@ public class ApiDocFactory
         }
 
         if (!exists(apiDoc) && flag) {apiDoc.createDoc();}
-    }
 
-    public static void createDoc(ArrayList<Class> classes) throws Exception
-    {
-        Path path = ApiDoc.file.toPath();
-        try{
-            Files.deleteIfExists(path);
-            Files.createFile(path);
-        }catch (IOException E){
-            E.printStackTrace();
-        }
-
-        for (Class cla : classes)
-        {
-            Method[] methods = cla.getMethods();
-            for (Method method : methods)
-            {
-                createDocPerMethod(method);
-            }
-        }
+        if (api != null) {return api.value();}
+        else {return null;}
     }
 
     public static void createDoc(Class[] classes) throws Exception
@@ -109,13 +93,32 @@ public class ApiDocFactory
             E.printStackTrace();
         }
 
+        ArrayList<String> titles = new ArrayList<String>();
+
         for (Class cla : classes)
         {
             Method[] methods = cla.getMethods();
             for (Method method : methods)
             {
-                createDocPerMethod(method);
+                String addTitle = createDocPerMethod(method);
+                if (addTitle != null) {titles.add(addTitle);}
             }
+        }
+
+        String title = "# 目录\n";
+        String content = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
+
+        for (String item : titles)
+        {
+            title = title + "- [" + item + "](#" + item + ")\n";
+        }
+
+        String newContent = title + content;
+
+        try{
+            Files.write(path,newContent.getBytes(StandardCharsets.UTF_8));
+        }catch (IOException e){
+            e.printStackTrace();
         }
     }
 
@@ -129,13 +132,32 @@ public class ApiDocFactory
             E.printStackTrace();
         }
 
+        ArrayList<String> titles = new ArrayList<String>();
+
         for (Class cla : classes)
         {
             Method[] methods = cla.getMethods();
             for (Method method : methods)
             {
-                createDocPerMethod(method);
+                String addTitle = createDocPerMethod(method);
+                if (addTitle != null) {titles.add(addTitle);}
             }
+        }
+
+        String title = "# 目录\n";
+        String content = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
+
+        for (String item : titles)
+        {
+            title = title + "- [" + item + "](#" + item + ")\n";
+        }
+
+        String newContent = title + content;
+
+        try{
+            Files.write(path,newContent.getBytes(StandardCharsets.UTF_8));
+        }catch (IOException e){
+            e.printStackTrace();
         }
     }
 
@@ -149,13 +171,71 @@ public class ApiDocFactory
             E.printStackTrace();
         }
 
+        ArrayList<String> titles = new ArrayList<String>();
+
         for (Class cla : classes)
         {
             Method[] methods = cla.getMethods();
             for (Method method : methods)
             {
-                createDocPerMethod(method);
+                String addTitle = createDocPerMethod(method);
+                if (addTitle != null) {titles.add(addTitle);}
             }
+        }
+
+        String title = "# 目录\n";
+        String content = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
+
+        for (String item : titles)
+        {
+            title = title + "- [" + item + "](#" + item + ")\n";
+        }
+
+        String newContent = title + content;
+
+        try{
+            Files.write(path,newContent.getBytes(StandardCharsets.UTF_8));
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void createDoc(ArrayList<Class> classes) throws Exception
+    {
+        Path path = ApiDoc.file.toPath();
+        try{
+            Files.deleteIfExists(path);
+            Files.createFile(path);
+        }catch (IOException E){
+            E.printStackTrace();
+        }
+
+        ArrayList<String> titles = new ArrayList<String>();
+
+        for (Class cla : classes)
+        {
+            Method[] methods = cla.getMethods();
+            for (Method method : methods)
+            {
+                String addTitle = createDocPerMethod(method);
+                if (addTitle != null) {titles.add(addTitle);}
+            }
+        }
+
+        String title = "# 目录\n";
+        String content = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
+
+        for (String item : titles)
+        {
+            title = title + "- [" + item + "](#" + item + ")\n";
+        }
+
+        String newContent = title + content;
+
+        try{
+            Files.write(path,newContent.getBytes(StandardCharsets.UTF_8));
+        }catch (IOException e){
+            e.printStackTrace();
         }
     }
 
