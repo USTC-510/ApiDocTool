@@ -1,9 +1,7 @@
 package utils;
 
-import annotations.Api;
-import annotations.Request;
-import annotations.Response;
-import annotations.Url;
+import annotations.*;
+
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
@@ -33,11 +31,13 @@ public class ApiDocFactory
         Method setParamType_request = cla.getMethod("setParamType_request", ArrayList.class);
         Method setParamName_response = cla.getMethod("setParamName_response", ArrayList.class);
         Method setParamType_response = cla.getMethod("setParamType_response", ArrayList.class);
+        Method setTip = cla.getMethod("setTip", String.class);
 
         Api api = meth.getAnnotation(Api.class);
         Request request = meth.getAnnotation(Request.class);
         Response response = meth.getAnnotation(Response.class);
         Url url = meth.getAnnotation(Url.class);
+        Remark remark = meth.getAnnotation(Remark.class);
 
         boolean flag = false;
 
@@ -68,6 +68,11 @@ public class ApiDocFactory
         {
             setMethod.invoke(apiDoc,url.method());
             setUrl.invoke(apiDoc,url.url());
+            flag = true;
+        }
+        if (remark != null)
+        {
+            setTip.invoke(apiDoc,remark.value());
             flag = true;
         }
 

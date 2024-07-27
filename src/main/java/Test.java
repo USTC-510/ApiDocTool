@@ -1,7 +1,4 @@
-import annotations.Api;
-import annotations.Request;
-import annotations.Response;
-import annotations.Url;
+import annotations.*;
 import utils.ApiDoc;
 import utils.ApiDocFactory;
 import java.util.ArrayList;
@@ -18,6 +15,7 @@ public class Test
     @Url(method = "POST", url = "http://localhost:8080/api/login")
     @Request(name = {"username","password"}, type = {"string","string"})
     @Response(name = {"name","code"}, type = {"string","int"})
+    @Remark("这个api实现了学生，老师和管理员的登录")
     public ArrayList<Object> api(String username, String password)
     {
         String name = "zkr";
