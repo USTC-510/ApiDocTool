@@ -1,7 +1,6 @@
 package utils;
 
 import annotations.*;
-
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.charset.StandardCharsets;
@@ -10,8 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+
 /**
  * @Author:   周康睿
  * @Description:  核心  有多个重载方法createDoc
@@ -84,123 +82,6 @@ public class ApiDocFactory
     }
 
     public static void createDoc(Class[] classes) throws Exception
-    {
-        Path path = ApiDoc.file.toPath();
-        try{
-            Files.deleteIfExists(path);
-            Files.createFile(path);
-        }catch (IOException E){
-            E.printStackTrace();
-        }
-
-        ArrayList<String> titles = new ArrayList<String>();
-
-        for (Class cla : classes)
-        {
-            Method[] methods = cla.getMethods();
-            for (Method method : methods)
-            {
-                String addTitle = createDocPerMethod(method);
-                if (addTitle != null) {titles.add(addTitle);}
-            }
-        }
-
-        String title = "# 目录\n";
-        String content = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
-
-        for (String item : titles)
-        {
-            title = title + "- [" + item + "](#" + item + ")\n";
-        }
-
-        String newContent = title + content;
-
-        try{
-            Files.write(path,newContent.getBytes(StandardCharsets.UTF_8));
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-
-    public static void createDoc(List<Class> classes) throws Exception
-    {
-        Path path = ApiDoc.file.toPath();
-        try{
-            Files.deleteIfExists(path);
-            Files.createFile(path);
-        }catch (IOException E){
-            E.printStackTrace();
-        }
-
-        ArrayList<String> titles = new ArrayList<String>();
-
-        for (Class cla : classes)
-        {
-            Method[] methods = cla.getMethods();
-            for (Method method : methods)
-            {
-                String addTitle = createDocPerMethod(method);
-                if (addTitle != null) {titles.add(addTitle);}
-            }
-        }
-
-        String title = "# 目录\n";
-        String content = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
-
-        for (String item : titles)
-        {
-            title = title + "- [" + item + "](#" + item + ")\n";
-        }
-
-        String newContent = title + content;
-
-        try{
-            Files.write(path,newContent.getBytes(StandardCharsets.UTF_8));
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-
-    public static void createDoc(Set<Class> classes) throws Exception
-    {
-        Path path = ApiDoc.file.toPath();
-        try{
-            Files.deleteIfExists(path);
-            Files.createFile(path);
-        }catch (IOException E){
-            E.printStackTrace();
-        }
-
-        ArrayList<String> titles = new ArrayList<String>();
-
-        for (Class cla : classes)
-        {
-            Method[] methods = cla.getMethods();
-            for (Method method : methods)
-            {
-                String addTitle = createDocPerMethod(method);
-                if (addTitle != null) {titles.add(addTitle);}
-            }
-        }
-
-        String title = "# 目录\n";
-        String content = new String(Files.readAllBytes(path), StandardCharsets.UTF_8);
-
-        for (String item : titles)
-        {
-            title = title + "- [" + item + "](#" + item + ")\n";
-        }
-
-        String newContent = title + content;
-
-        try{
-            Files.write(path,newContent.getBytes(StandardCharsets.UTF_8));
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
-
-    public static void createDoc(ArrayList<Class> classes) throws Exception
     {
         Path path = ApiDoc.file.toPath();
         try{

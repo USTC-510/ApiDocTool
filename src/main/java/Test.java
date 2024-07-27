@@ -1,6 +1,5 @@
 import annotations.*;
 import utils.ApiDocFactory;
-import java.util.ArrayList;
 
 /**
  * @Author:   周康睿
@@ -35,5 +34,4 @@ public class Test
         Class[] classes = new Class[]{Test.class};
         ApiDocFactory.createDoc(classes);
     }
-
 }
