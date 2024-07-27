@@ -38,7 +38,6 @@ ApiDocFactory.createDoc(classes);
   
   其中，...表示项目中所有添加了注解的方法所属类的.class文件。例如，如果Test类中有方法(api)上写了注解，那么...处应填写 Test.class(也就是在类名后面加上.class)。  
   **运行后，你的项目根目录下会自动创建一个APIDOC.md文件，即为Api文档。**  
-  **Tips:** 由于ApiDocFactory类中的静态方法createDoc有多个重载，因此你也可以用List<Class>,Set<Class>,ArrayList<Class>这三个类型来替代Class[]。  
   
   示例代码：
   --------------------
