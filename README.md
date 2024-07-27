@@ -13,9 +13,8 @@
  
  使用方法：
  ------------------
- 主要是下面4个注解,它们都需要写在方法上面。
-
-   
+ 主要是下面5个注解,它们都需要写在方法上面。注意，这些注解都不是必须要写的，但是只要写了一个注解，就会生成文档中的内容。  
+ 
  **@Api**: 携带一个String类型参数，代表api的名称/作用，它将会显示在文档的最上方。  
  
  **@Url**: 携带两个String类型参数，method和url，代表请求方法（POST,GET等）以及接口的URL。  
@@ -23,6 +22,10 @@
  **@Request**：携带两个String[]类型参数，name和type，代表请求体中携带的参数名称和类型。  
  
  **@Response**：携带两个String[]类型参数，name和type，代表响应体中携带的参数名称和类型。  
+
+ **@Remark**: 携带一个String类型参数，代表api的备注，它将会显示在文档的最下方。  
+
+ **Tips:** 如果请求体中没有参数，那么@Request中不用填写参数，直接写@Request。@Response同理。（当然你也可以写 @Request(name="无",type="无"),与直接写@Request的效果一样 )。除了这两个注解之外，其它3个注解只要使用了就必须填写参数。
  
 
  最后，在整个项目的main方法中，加入下面两行代码:  
@@ -34,7 +37,7 @@ ApiDocFactory.createDoc(classes);
   
   其中，...表示项目中所有添加了注解的方法所属类的.class文件。例如，如果Test类中有方法(api)上写了注解，那么...处应填写 Test.class(也就是在类名后面加上.class)。  
   **运行后，你的项目根目录下会自动创建一个APIDOC.md文件，即为Api文档。**  
-  **tips:** 由于ApiDocFactory类中的静态方法createDoc有多个重载，因此你也可以用List<Class>,Set<Class>,ArrayList<Class>这三个类型来替代Class[]。  
+  **Tips:** 由于ApiDocFactory类中的静态方法createDoc有多个重载，因此你也可以用List<Class>,Set<Class>,ArrayList<Class>这三个类型来替代Class[]。  
   
   示例代码：
   --------------------
@@ -46,6 +49,7 @@ public class Test
     @Url(method = "POST", url = "http://localhost:8080/api/login")
     @Request(name = {"username","password"}, type = {"string","string"})
     @Response(name = {"name","code"}, type = {"string","int"})
+    @Remark("这个api实现了学生，老师和管理员的登录")
     public ArrayList<Object> api(String username, String password)
     {
         String name = "zkr";
@@ -81,6 +85,9 @@ POST:  `http://localhost:8080/api/login`
 | :-: | :-: |
 |name|string|
 |code|int|
+### 备注
+这个api实现了学生，老师和管理员的登录
+
 
   
  
