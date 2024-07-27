@@ -5,7 +5,7 @@
  -------------
 **1. 以*注解形式*在代码中即时声明api文档的内容，当注解参数改变时，api文档的内容也会随之改变。**  
 **2. api文档的格式简明扼要，易于阅读。**  
-**3. api文档自动添加了目录，便于查找。**
+**3. api文档自动添加了目录，便于查找。**  
 **4. 工具的嵌入性强，不需要额外引入任何依赖，不会对原有项目的运行造成任何影响。**
  
  导入方法：
@@ -38,14 +38,13 @@ ApiDocFactory.createDoc(classes);
   
   其中，...表示项目中所有添加了注解的方法所属类的.class文件。例如，如果Test类中有方法(api)上写了注解，那么...处应填写 Test.class(也就是在类名后面加上.class)。  
   **运行后，你的项目根目录下会自动创建一个APIDOC.md文件，即为Api文档。**  
-  **Tips:** 由于ApiDocFactory类中的静态方法createDoc有多个重载，因此你也可以用List<Class>,Set<Class>,ArrayList<Class>这三个类型来替代Class[]。  
   
   示例代码：
   --------------------
   ```
 public class Test
 {
-    //下面定义了一个接口
+    //下面定义了两个api
     @Api("选课系统登录")
     @Url(method = "POST", url = "http://localhost:8080/api/login")
     @Request(name = {"username","password"}, type = {"string","string"})
