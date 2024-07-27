@@ -8,7 +8,7 @@ import utils.ApiDocFactory;
  */
 public class Test
 {
-    //下面定义了一个接口
+    //下面定义了两个api
     @Api("选课系统登录")
     @Url(method = "POST", url = "http://localhost:8080/api/login")
     @Request(name = {"username","password"}, type = {"string","string"})
