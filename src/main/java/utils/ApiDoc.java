@@ -1,8 +1,6 @@
 package utils;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 
 /**
@@ -22,6 +20,7 @@ public class ApiDoc
     private ArrayList<String> paramType_request = new ArrayList<String>();
     private ArrayList<String> paramName_response = new ArrayList<String>();
     private ArrayList<String> paramType_response = new ArrayList<String>();
+    private String tip = null;
 
     public ApiDoc(String description, String url, String method, ArrayList<String> paramName_request, ArrayList<String> paramType_request, ArrayList<String> paramName_response, ArrayList<String> paramType_response) {
         this.description = description;
@@ -32,6 +31,7 @@ public class ApiDoc
         this.paramName_response = paramName_response;
         this.paramType_response = paramType_response;
     }
+
 
     public ApiDoc(){
 
@@ -101,16 +101,16 @@ public class ApiDoc
         this.paramType_response = new ArrayList<>(paramType_response);
     }
 
+    public String getTip() {
+        return tip;
+    }
+
+    public void setTip(String tip) {
+        this.tip = tip;
+    }
+
     public void createDoc() throws Exception
     {
-        Path path = file.toPath();
-        try{
-            Files.deleteIfExists(path);
-            Files.createFile(path);
-        }catch (IOException E){
-            E.printStackTrace();
-        }
-
         try (PrintWriter writer = new PrintWriter(new FileWriter(file,true))){
             writer.println("## "+description);
             writer.println("### 请求URL");
@@ -128,6 +128,11 @@ public class ApiDoc
             for (int i = 0;i < paramName_response.size();i++)
             {
                 writer.println("|"+paramName_response.get(i)+"|"+paramType_response.get(i)+"|");
+            }
+            if (tip != null)
+            {
+                writer.println("### 备注");
+                writer.println(tip);
             }
         } catch (IOException e) {
             e.printStackTrace();

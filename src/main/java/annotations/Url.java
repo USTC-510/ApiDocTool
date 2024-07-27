@@ -12,6 +12,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @SuppressWarnings("all")
 public @interface Url {
-    String url() default "还没有填写哦...";
-    String method() default "还没有填写哦...";
+    String url();
+    String method();
 }
