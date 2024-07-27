@@ -3,6 +3,8 @@ package utils;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 /**
@@ -15,7 +17,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class ApiDoc
 {
-    private File file = new File("APIDOC.md");
+    public static File file = new File("APIDOC.md");
     private String description = "还没有描述哦...";
     private String url = "还没有url哦...";
     private String method = "还没有请求方法哦...";
@@ -91,8 +93,16 @@ public class ApiDoc
 
     public void createDoc() throws Exception
     {
+        Path path = file.toPath();
+        try{
+            Files.deleteIfExists(path);
+            Files.createFile(path);
+        }catch (IOException E){
+            E.printStackTrace();
+        }
+
         try (PrintWriter writer = new PrintWriter(new FileWriter(file,true))){
-            writer.println("[API]  "+"## "+description);
+            writer.println("## "+description);
             writer.println("### 请求URL");
             writer.println(method + ":  "+"`"+ url + "`");
             writer.println("### 请求参数");

@@ -1,4 +1,4 @@
-[API]  ## 选课系统登录
+## 选课系统登录
 ### 请求URL
 POST:  `http://localhost:8080/api/login`
 ### 请求参数

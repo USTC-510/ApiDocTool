@@ -4,11 +4,9 @@ import annotations.Api;
 import annotations.Request;
 import annotations.Response;
 import annotations.Url;
-
 import java.io.IOException;
 import java.lang.reflect.Method;
 import java.nio.file.Files;
-import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -78,6 +76,14 @@ public class ApiDocFactory
 
     public static void createDoc(ArrayList<Class> classes) throws Exception
     {
+        Path path = ApiDoc.file.toPath();
+        try{
+            Files.deleteIfExists(path);
+            Files.createFile(path);
+        }catch (IOException E){
+            E.printStackTrace();
+        }
+
         for (Class cla : classes)
         {
             Method[] methods = cla.getMethods();
@@ -90,6 +96,14 @@ public class ApiDocFactory
 
     public static void createDoc(Class[] classes) throws Exception
     {
+        Path path = ApiDoc.file.toPath();
+        try{
+            Files.deleteIfExists(path);
+            Files.createFile(path);
+        }catch (IOException E){
+            E.printStackTrace();
+        }
+
         for (Class cla : classes)
         {
             Method[] methods = cla.getMethods();
@@ -102,6 +116,14 @@ public class ApiDocFactory
 
     public static void createDoc(List<Class> classes) throws Exception
     {
+        Path path = ApiDoc.file.toPath();
+        try{
+            Files.deleteIfExists(path);
+            Files.createFile(path);
+        }catch (IOException E){
+            E.printStackTrace();
+        }
+
         for (Class cla : classes)
         {
             Method[] methods = cla.getMethods();
@@ -114,6 +136,14 @@ public class ApiDocFactory
 
     public static void createDoc(Set<Class> classes) throws Exception
     {
+        Path path = ApiDoc.file.toPath();
+        try{
+            Files.deleteIfExists(path);
+            Files.createFile(path);
+        }catch (IOException E){
+            E.printStackTrace();
+        }
+
         for (Class cla : classes)
         {
             Method[] methods = cla.getMethods();
@@ -138,7 +168,5 @@ public class ApiDocFactory
         } catch (IOException e) {
             throw new RuntimeException("Error reading file: " + filePath, e);
         }
-
-
     }
 }
