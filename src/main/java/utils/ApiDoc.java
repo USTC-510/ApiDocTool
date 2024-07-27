@@ -1,7 +1,5 @@
 package utils;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -12,8 +10,7 @@ import java.util.ArrayList;
  * @Description:  这个类不是为开发者准备的
  * @Version:   1.0
  */
-@AllArgsConstructor
-@NoArgsConstructor
+
 @SuppressWarnings("all")
 public class ApiDoc
 {
@@ -26,6 +23,19 @@ public class ApiDoc
     private ArrayList<String> paramName_response = new ArrayList<String>();
     private ArrayList<String> paramType_response = new ArrayList<String>();
 
+    public ApiDoc(String description, String url, String method, ArrayList<String> paramName_request, ArrayList<String> paramType_request, ArrayList<String> paramName_response, ArrayList<String> paramType_response) {
+        this.description = description;
+        this.url = url;
+        this.method = method;
+        this.paramName_request = paramName_request;
+        this.paramType_request = paramType_request;
+        this.paramName_response = paramName_response;
+        this.paramType_response = paramType_response;
+    }
+
+    public ApiDoc(){
+
+    }
 
     public File getFile() {
         return file;
