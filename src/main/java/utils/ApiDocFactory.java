@@ -20,6 +20,14 @@ public class ApiDocFactory
 {
     public static String createDocPerMethod(Method meth) throws Exception
     {
+        Api api = meth.getAnnotation(Api.class);
+        if (api == null) {return null;}
+
+        Request request = meth.getAnnotation(Request.class);
+        Response response = meth.getAnnotation(Response.class);
+        Url url = meth.getAnnotation(Url.class);
+        Remark remark = meth.getAnnotation(Remark.class);
+
         Class<?> cla = ApiDoc.class;
         ApiDoc apiDoc = (ApiDoc)cla.newInstance();
 
@@ -31,12 +39,6 @@ public class ApiDocFactory
         Method setParamName_response = cla.getMethod("setParamName_response", ArrayList.class);
         Method setParamType_response = cla.getMethod("setParamType_response", ArrayList.class);
         Method setTip = cla.getMethod("setTip", String.class);
-
-        Api api = meth.getAnnotation(Api.class);
-        Request request = meth.getAnnotation(Request.class);
-        Response response = meth.getAnnotation(Response.class);
-        Url url = meth.getAnnotation(Url.class);
-        Remark remark = meth.getAnnotation(Remark.class);
 
         boolean flag = false;
 
@@ -77,8 +79,7 @@ public class ApiDocFactory
 
         if (!exists(apiDoc) && flag) {apiDoc.createDoc();}
 
-        if (api != null) {return api.value();}
-        else {return null;}
+        return api.value();
     }
 
     public static void createDoc(Class[] classes) throws Exception

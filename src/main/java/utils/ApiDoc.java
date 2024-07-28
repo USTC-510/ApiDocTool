@@ -22,7 +22,7 @@ public class ApiDoc
     private ArrayList<String> paramType_response = new ArrayList<String>();
     private String tip = null;
 
-    public ApiDoc(String description, String url, String method, ArrayList<String> paramName_request, ArrayList<String> paramType_request, ArrayList<String> paramName_response, ArrayList<String> paramType_response) {
+    public ApiDoc(String description, String url, String method, ArrayList<String> paramName_request, ArrayList<String> paramType_request, ArrayList<String> paramName_response, ArrayList<String> paramType_response, String tip) {
         this.description = description;
         this.url = url;
         this.method = method;
@@ -30,8 +30,8 @@ public class ApiDoc
         this.paramType_request = paramType_request;
         this.paramName_response = paramName_response;
         this.paramType_response = paramType_response;
+        this.tip = tip;
     }
-
 
     public ApiDoc(){
 
