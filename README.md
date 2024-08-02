@@ -31,7 +31,7 @@
 
   &emsp;&emsp;最后，在整个项目的main方法中，加入下面两行代码:  
  
-  ```
+  ```java
 Class[] classes = new Class[]{...};
 ApiDocFactory.createDoc(classes); 
   ``` 
@@ -41,7 +41,7 @@ ApiDocFactory.createDoc(classes);
   
   示例代码：
   --------------------
-  ```
+  ```java
 public class Test
 {
     //下面定义了两个api
